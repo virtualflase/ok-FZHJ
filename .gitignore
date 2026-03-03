@@ -64,3 +64,11 @@ pip-log.txt
 pip-delete-this-directory.txt
 autohelper
 working_images/
+
+# AI
+.agents
+.agent
+.claude
+.opencode
+.trellis
+AGENTS.md
