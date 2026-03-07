@@ -114,7 +114,10 @@ config = {
         ["ok", "DiagnosisTask"],
     ],
     'trigger_tasks':[ # 不断执行的触发式任务
-        ["src.tasks.MyTriggerTask", "MyTriggerTask"],
+        ["src.tasks.AutoSkipTriggerTask", "AutoSkipTriggerTask"],
+        ["src.tasks.AutoApTriggerTask", "AutoApTriggerTask"],
+        ["src.tasks.MaterialStageTriggerTask", "MaterialStageTriggerTask"],
+        ["src.tasks.AlchemyTriggerTask", "AlchemyTriggerTask"],
     ],
     'custom_tabs': [
         ['src.ui.MyTab', 'MyTab'], #可选, 自定义UI, 显示在侧边栏
