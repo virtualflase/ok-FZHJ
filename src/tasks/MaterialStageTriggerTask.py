@@ -18,6 +18,7 @@ class MaterialStageTriggerTask(GameTriggerTaskBase):
     def run(self):
         if not self.is_enabled():
             return
+        # 这里只处理材料本自己的战斗节点，通用的 blank_continue 交给 AutoSkipTriggerTask 独占。
         self.click_first_present(
             "support_entry",
             "material_stage_start",

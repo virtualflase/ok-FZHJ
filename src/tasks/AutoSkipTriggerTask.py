@@ -18,6 +18,7 @@ class AutoSkipTriggerTask(GameTriggerTaskBase):
     def run(self):
         if not self.is_enabled():
             return
+        # 每轮只推进一个最高优先级按钮，避免在同一帧里连续点击多个继续/跳过入口。
         self.click_first_present(
             "skip_button",
             "blank_continue_primary",
