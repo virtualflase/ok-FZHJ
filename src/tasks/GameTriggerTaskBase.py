@@ -6,6 +6,7 @@ from ok import TriggerTask
 
 
 class GameTriggerTaskBase(TriggerTask):
+    # 这四个迁移任务都走同一套配置兜底、找图和点击辅助，避免每个任务重复写样板代码。
     non_negative_int_keys: tuple[str, ...] = ()
 
     def __init__(self, *args, **kwargs):
@@ -20,6 +21,7 @@ class GameTriggerTaskBase(TriggerTask):
         self._missing_features_logged = set()
 
     def get_setting(self, key: str, default: Any = None) -> Any:
+        # 运行时配置优先，其次才退回默认配置；这样界面里改过的值会立刻生效。
         task_config = getattr(self, "config", None)
         if isinstance(task_config, dict) and key in task_config:
             return task_config[key]
@@ -44,6 +46,7 @@ class GameTriggerTaskBase(TriggerTask):
         return None
 
     def find_feature_box(self, feature_name: str):
+        # 触发任务会高频运行，缺失特征如果每轮都报错会把日志刷满，所以这里只记录一次。
         if not self.feature_exists(feature_name):
             if feature_name not in self._missing_features_logged:
                 self._missing_features_logged.add(feature_name)

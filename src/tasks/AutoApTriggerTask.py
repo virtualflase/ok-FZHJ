@@ -23,10 +23,12 @@ class AutoApTriggerTask(GameTriggerTaskBase):
         if self.find_feature_box("ap_tip") is None:
             return
 
+        # 识别到 AP 提示后，按旧脚本逻辑跑完整个补药闭环，而不是只点一步就退出。
         self.log_info("AutoApTriggerTask ap flow start")
         if not self.click_feature("ap_use_entry", after_sleep=0.6):
             return
 
+        # max_use_clicks 只是确认按钮的点击上限，用来防止异常界面下无限重复确认。
         max_clicks = self.get_int_setting("max_use_clicks", 4)
         used = 0
         while used < max_clicks:
